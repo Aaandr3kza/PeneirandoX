@@ -1,0 +1,19 @@
+PENEIRANDOX — ORGANIZAÇÃO DAS IMAGENS
+
+icons/
+  Ícones da interface. Use os nomes icon-*.png, por exemplo icon-home.png.
+
+anuncios/
+  Seis artes usadas pelos espaços publicitários simulados:
+  - anuncio-largo-1.png, anuncio-largo-2.png, anuncio-largo-3.png
+  - anuncio-alto-1.png, anuncio-alto-2.png, anuncio-alto-3.png
+  Consulte anuncios/LEIA-ME.txt para proporções e funcionamento.
+
+Raiz de img/
+  - logo.png: logotipo horizontal da marca (1080 × 112 px).
+  - logo-mini.png: ícone quadrado usado como favicon na guia do navegador.
+  - esporte-basquete.png, esporte-futebol.png, esporte-futsal.png e
+    esporte-volei.png: imagens das modalidades.
+
+times/
+  Escudos dos times cadastrados.

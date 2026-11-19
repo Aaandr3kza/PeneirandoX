@@ -1,0 +1,21 @@
+<!-- PENEIRANDOX — Trecho reutilizável de interface incluído em páginas EJS. -->
+<nav class="nav-inferior">
+    <a href="/" class="<%= paginaAtiva === 'home' ? 'ativo' : '' %>">
+      <img class="icone" src="/img/icons/icon-home.png" alt="" /> Início
+    </a>
+    <a href="/pesquisar" class="<%= paginaAtiva === 'pesquisar' ? 'ativo' : '' %>">
+      <img class="icone" src="/img/icons/icon-search.png" alt="" /> Pesquisar
+    </a>
+    <a href="/favoritos" class="<%= paginaAtiva === 'favoritos' ? 'ativo' : '' %>">
+      <img class="icone" src="/img/icons/icon-heart.png" alt="" /> Favoritos
+    </a>
+    <% if (admin) { %>
+      <a href="/admin" class="<%= paginaAtiva === 'admin' ? 'ativo' : '' %>">
+        <img class="icone" src="/img/icons/icon-admin.png" alt="" /> Administrar
+      </a>
+    <% } else { %>
+      <a href="/perfil" class="<%= paginaAtiva === 'perfil' ? 'ativo' : '' %>">
+        <img class="icone" src="/img/icons/icon-user.png" alt="" /> Perfil
+      </a>
+    <% } %>
+  </nav>

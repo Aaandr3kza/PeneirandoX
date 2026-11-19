@@ -1,0 +1,4 @@
+ÍCONES DO SITE
+
+Coloque nesta pasta os PNGs com prefixo icon- (por exemplo, icon-home.png e icon-heart.png).
+O código os acessa por /img/icons/nome-do-arquivo.png.

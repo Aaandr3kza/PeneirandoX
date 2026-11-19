@@ -1,0 +1,33 @@
+[
+  {
+    "id": "ee695b3b-57ce-4097-b471-219dd96b159f",
+    "email": "usuario@gmail.com",
+    "senhaHash": "$2a$12$dvBuu/jbo/oJhXVPZaaLdOn8uQVdPEJj.Sc0vJFz/JC/.UnrT4Uay",
+    "role": "user",
+    "superAdmin": false,
+    "ativo": true,
+    "gender": "Masculino",
+    "city": "Barueri",
+    "state": "SP",
+    "age": 17,
+    "sports": [
+      "Futebol",
+      "Handebol"
+    ],
+    "favoritos": []
+  },
+  {
+    "id": "admin-peneirandox-principal",
+    "email": "adm@gmail.com",
+    "senhaHash": "$2a$12$yZhwxAVPiSuClNziSNvTF.b5TSgJKGFvI9aI0QRcg7sgr24OzV8.C",
+    "role": "superadmin",
+    "superAdmin": true,
+    "ativo": true,
+    "gender": "Outro",
+    "city": "Barueri",
+    "state": "SP",
+    "age": 18,
+    "sports": [],
+    "favoritos": []
+  }
+]

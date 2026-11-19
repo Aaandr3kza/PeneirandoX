@@ -1,0 +1,22 @@
+{
+  "name": "peneirandox",
+  "version": "1.2.0",
+  "private": true,
+  "description": "Site de divulgação de seletivas esportivas com painel administrativo e gerenciamento de dados JSON.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

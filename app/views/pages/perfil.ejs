@@ -1,0 +1,101 @@
+<!-- PENEIRANDOX — Trecho reutilizável de interface incluído em páginas EJS. -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<%- include('../partials/head', { titulo }) %>
+<body data-page="perfil">
+<%- include('../partials/header', { paginaAtiva }) %>
+
+<div class="layout-publicidade">
+  <aside class="anuncio-lateral anuncio-lateral-esquerdo"><%- include('../partials/ad-slot', { identificador: 'lateral-esquerdo', formato: 'alto', dica: 'Arte vertical 160 × 600 px' }) %></aside>
+  <div class="coluna-publicidade">
+    <%- include('../partials/ad-slot', { identificador: 'topo', formato: 'largo', dica: 'Banner horizontal no topo do site' }) %>
+
+<main class="principal">
+    <div class="conteudo">
+
+      <div class="pagina-topo">
+        <h1 class="pagina-titulo">Perfil</h1>
+        <p class="pagina-sub">Seus dados, preferências e avaliações.</p>
+      </div>
+
+      <!-- ============================================================
+           SEM LOGIN: este card aparece no lugar do perfil e convida
+           a pessoa a entrar (ou criar conta).
+      ============================================================ -->
+      <section id="perfil-deslogado" class="perfil-card escondido">
+        <h2 class="perfil-titulo">Você não está logado</h2>
+        <p class="perfil-texto">
+          Entre na sua conta (ou crie uma) para salvar seus dados,
+          suas preferências e ver suas habilidades.
+        </p>
+        <div class="perfil-botoes">
+          <a class="btn-secundario destaque" href="/login">Entrar ou criar conta</a>
+          <a class="btn-secundario" href="/">Ver as seletivas</a>
+        </div>
+      </section>
+
+      <!-- Daqui para baixo só aparece para quem está logado -->
+      <div id="perfil-conteudo">
+
+      <!-- Dados da conta -->
+      <section class="perfil-card">
+        <h2 class="perfil-titulo">Minha conta</h2>
+        <p class="perfil-linha">
+          <span>E-mail</span>
+          <strong id="perfil-email">—</strong>
+        </p>
+      </section>
+
+      <!-- Dados e preferências -->
+      <section class="perfil-card">
+        <h2 class="perfil-titulo">Dados e preferências</h2>
+
+        <p id="aviso-perfil" class="aviso escondido">Perfil salvo!</p>
+        <p id="dica-perfil" class="dica escondido">
+          Informe cidade, estado e idade para ver a distância das seletivas.
+        </p>
+
+        <label for="perfil-genero">Gênero</label>
+        <select id="perfil-genero"></select>
+
+        <label for="perfil-idade">Idade</label>
+        <input id="perfil-idade" type="number" min="8" max="99" />
+
+        <label for="perfil-cidade">Cidade</label>
+        <input id="perfil-cidade" type="text" placeholder="Ex: São Paulo" />
+
+        <label for="perfil-estado">Estado</label>
+        <select id="perfil-estado"></select>
+
+        <span class="rotulo">Esportes de preferência (opcional)</span>
+        <div id="perfil-chips" class="chips"></div>
+
+        <button id="btn-salvar-perfil" class="btn-principal" type="button">Salvar alterações</button>
+      </section>
+
+      <!-- Gráfico de habilidades (um por esporte escolhido) -->
+      <section class="perfil-card">
+        <h2 class="perfil-titulo">Habilidades</h2>
+        <div id="lista-habilidades"></div>
+      </section>
+
+      <button id="btn-sair" class="btn-sair" type="button">Sair da conta</button>
+
+      </div><!-- /#perfil-conteudo -->
+
+    </div>
+  </main>
+
+    <%- include('../partials/ad-slot', { identificador: 'perfil-topo-final', formato: 'largo', dica: 'Anúncio ao final da página' }) %>
+  </div>
+  <aside class="anuncio-lateral anuncio-lateral-direito"><%- include('../partials/ad-slot', { identificador: 'lateral-direito', formato: 'alto', dica: 'Arte vertical 160 × 600 px' }) %></aside>
+</div>
+
+<%- include('../partials/footer') %>
+<%- include('../partials/navbar', { paginaAtiva }) %>
+<!-- Scripts públicos: carregar na ordem para compartilhar funções e dados. -->
+<script src="/js/dados.js"></script>
+<script src="/js/paginas.js"></script>
+<script src="/js/conta.js"></script>
+</body>
+</html>

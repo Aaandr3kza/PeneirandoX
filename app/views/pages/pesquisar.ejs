@@ -1,0 +1,87 @@
+<!-- PENEIRANDOX — Trecho reutilizável de interface incluído em páginas EJS. -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<%- include('../partials/head', { titulo }) %>
+<body data-page="pesquisar">
+<%- include('../partials/header', { paginaAtiva }) %>
+
+<div class="layout-publicidade">
+  <aside class="anuncio-lateral anuncio-lateral-esquerdo"><%- include('../partials/ad-slot', { identificador: 'lateral-esquerdo', formato: 'alto', dica: 'Arte vertical 160 × 600 px' }) %></aside>
+  <div class="coluna-publicidade">
+    <%- include('../partials/ad-slot', { identificador: 'topo', formato: 'largo', dica: 'Banner horizontal no topo do site' }) %>
+
+<main class="principal">
+    <div class="conteudo">
+
+      <!-- Título da página -->
+      <div class="pagina-topo">
+        <h1 class="pagina-titulo">Pesquisar seletivas</h1>
+        <p class="pagina-sub">Encontre pelo nome do time ou use os filtros.</p>
+      </div>
+
+      <!-- ============================================================
+           BARRA DE BUSCA
+           Digite o nome do time → a lista é filtrada na hora.
+      ============================================================ -->
+      <div class="barra-busca">
+        <img class="icone icone-grande" src="/img/icons/icon-search.png" alt="" />
+        <input id="campo-busca" type="text" placeholder="Nome do time..." />
+        <button id="btn-filtros" class="btn-filtros">
+          <img class="icone" src="/img/icons/icon-filter.png" alt="" /> Filtros
+        </button>
+      </div>
+
+      <!-- ============================================================
+           PAINEL DE FILTROS
+           Começa escondido e abre ao clicar em "Filtros".
+           As opções dos selects são preenchidas por paginas.js.
+      ============================================================ -->
+      <div id="painel-filtros" class="painel-filtros escondido">
+        <div class="grade-filtros">
+          <label>Esporte<select id="filtro-esporte"></select></label>
+          <label>Estado<select id="filtro-estado"></select></label>
+          <label>Categoria<select id="filtro-categoria"></select></label>
+          <!-- "Por distância" compara a cidade do seu cadastro com a
+               cidade do time e mostra as mais próximas primeiro -->
+          <label>Ordenar por
+            <select id="filtro-ordem">
+              <option value="">Mais recentes</option>
+              <option value="distancia">Por distância</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- Aparece quando escolhem "Por distância" e ainda não há cidade
+             no cadastro -->
+        <p id="aviso-local" class="dica escondido">
+          Informe cidade e estado no seu Perfil para vermos a distância das seletivas.
+        </p>
+
+        <button id="btn-limpar" class="btn-limpar escondido">
+          <img class="icone icone-mini" src="/img/icons/icon-close.png" alt="" /> Limpar filtros
+        </button>
+      </div>
+
+      <!-- Quantidade de resultados (texto preenchido por paginas.js) -->
+      <p id="contador" class="contador"></p>
+
+      <!-- Lista de resultados (preenchida por paginas.js) -->
+      <div id="lista-resultados"></div>
+
+    </div>
+  </main>
+
+    <%- include('../partials/ad-slot', { identificador: 'pesquisar-resultados-final', formato: 'largo', dica: 'Anúncio ao final da página' }) %>
+  </div>
+  <aside class="anuncio-lateral anuncio-lateral-direito"><%- include('../partials/ad-slot', { identificador: 'lateral-direito', formato: 'alto', dica: 'Arte vertical 160 × 600 px' }) %></aside>
+</div>
+
+<%- include('../partials/footer') %>
+<%- include('../partials/navbar', { paginaAtiva }) %>
+<%- include('../partials/modal') %>
+<!-- Scripts públicos: carregar na ordem para compartilhar funções e dados. -->
+<script src="/js/dados.js"></script>
+<script src="/js/paginas.js"></script>
+<script src="/js/conta.js"></script>
+</body>
+</html>

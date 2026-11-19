@@ -1,0 +1,214 @@
+[
+  {
+    "id": "1",
+    "team_name": "Antares FC",
+    "sport": "Futebol",
+    "city": "São Paulo",
+    "state": "SP",
+    "age_category": "Sub-15",
+    "emblem_url": "/img/times/antaresfc.png",
+    "dates": "20 a 25 de Outubro de 2026",
+    "short_location": "CT Antares",
+    "address": "Av. das Acácias, 1200 - Barra Funda, São Paulo - SP",
+    "lat": -23.5253,
+    "lng": -46.6658,
+    "content_text": "Seletiva aberta para atletas nascidos entre 2009 e 2011. Levar documento com foto, kit de treino e chuteiras (campo e society). Vagas limitadas. Inscrição confirmada apenas após envio do formulário.",
+    "content_images": [
+      "/img/flyer-01.png"
+    ],
+    "registration_links": [
+      {
+        "label": "Formulário de Inscrição",
+        "url": "https://forms.gle/exemplo"
+      },
+      {
+        "label": "WhatsApp",
+        "url": "https://wa.me/5511999999999"
+      }
+    ],
+    "featured": true,
+    "active": true
+  },
+  {
+    "id": "2",
+    "team_name": "Centauro Rubro FC",
+    "sport": "Futebol",
+    "city": "Rio de Janeiro",
+    "state": "RJ",
+    "age_category": "Sub-17",
+    "emblem_url": "/img/times/centaurorubro.png",
+    "dates": "02 a 06 de Novembro de 2026",
+    "short_location": "CT Centauro",
+    "address": "Estrada do Mirante, 3000 - Vargem Grande, Rio de Janeiro - RJ",
+    "lat": -22.976,
+    "lng": -43.383,
+    "content_text": "Seletiva para a categoria de base. Atletas nascidos em 2008 e 2009. Avaliação técnica e física com a comissão técnica. Levar RG, CPF e atestado médico.",
+    "content_images": [],
+    "registration_links": [
+      {
+        "label": "WhatsApp",
+        "url": "https://wa.me/5521988888888"
+      },
+      {
+        "label": "Edital (PDF)",
+        "url": "https://exemplo.com/edital.pdf"
+      }
+    ],
+    "featured": true,
+    "active": true
+  },
+  {
+    "id": "3",
+    "team_name": "Laranja Lima",
+    "sport": "Basquete",
+    "city": "São Paulo",
+    "state": "SP",
+    "age_category": "Sub-13",
+    "emblem_url": "/img/times/laranjalima.png",
+    "dates": "15 de Novembro de 2026",
+    "short_location": "Ginásio Lira",
+    "address": "Rua do Bosque, 900 - Jardim Europa, São Paulo - SP",
+    "lat": -23.567,
+    "lng": -46.693,
+    "content_text": "Seletiva de basquete masculino e feminino. Nascidos em 2012 e 2013. Levar tênis de quadra, garrafa de água e atestado médico.",
+    "content_images": [],
+    "registration_links": [
+      {
+        "label": "Formulário de Inscrição",
+        "url": "https://forms.gle/exemplo2"
+      }
+    ],
+    "featured": false,
+    "active": true
+  },
+  {
+    "id": "4",
+    "team_name": "Diva Violeta",
+    "sport": "Vôlei",
+    "city": "Sorocaba",
+    "state": "SP",
+    "age_category": "Sub-17",
+    "emblem_url": "/img/times/divavioleta.png",
+    "dates": "22 a 23 de Novembro de 2026",
+    "short_location": "Ginásio Violeta",
+    "address": "Av. das Palmeiras, 1000 - Centro, Sorocaba - SP",
+    "lat": -23.5015,
+    "lng": -47.4526,
+    "content_text": "Seletiva de vôlei para ambos os sexos. Nascidos entre 2008 e 2010. Joelheira obrigatória.",
+    "content_images": [],
+    "registration_links": [
+      {
+        "label": "WhatsApp",
+        "url": "https://wa.me/5515777777777"
+      }
+    ],
+    "featured": false,
+    "active": true
+  },
+  {
+    "id": "5",
+    "team_name": "Corvus EC",
+    "sport": "Futsal",
+    "city": "Jaraguá do Sul",
+    "state": "SC",
+    "age_category": "Sub-15",
+    "emblem_url": "/img/times/corvusec.png",
+    "dates": "10 de Novembro de 2026",
+    "short_location": "Arena Corvus",
+    "address": "Rua das Araucárias, 200 - Centro, Jaraguá do Sul - SC",
+    "lat": -26.4853,
+    "lng": -49.0714,
+    "content_text": "Seletiva de futsal masculino. Nascidos em 2010 e 2011. Levar tênis de quadra e documento com foto.",
+    "content_images": [
+      "/img/flyer-05.png"
+    ],
+    "registration_links": [
+      {
+        "label": "Formulário de Inscrição",
+        "url": "https://forms.gle/exemplo3"
+      },
+      {
+        "label": "WhatsApp",
+        "url": "https://wa.me/5547666666666"
+      }
+    ],
+    "featured": true,
+    "active": true
+  },
+  {
+    "id": "6",
+    "team_name": "Escorpião Dourado",
+    "sport": "Futebol",
+    "city": "Belo Horizonte",
+    "state": "MG",
+    "age_category": "Sub-20",
+    "emblem_url": "/img/times/escorpiaodourado.png",
+    "dates": "28 a 30 de Novembro de 2026",
+    "short_location": "CT Escorpião",
+    "address": "Rua do Horizonte, 200 - Santa Efigênia, Belo Horizonte - MG",
+    "lat": -19.926,
+    "lng": -43.937,
+    "content_text": "Seletiva para o elenco Sub-20. Atletas nascidos entre 2006 e 2008. Processo seletivo com três dias de avaliação.",
+    "content_images": [],
+    "registration_links": [
+      {
+        "label": "Formulário de Inscrição",
+        "url": "https://forms.gle/exemplo4"
+      },
+      {
+        "label": "Edital (PDF)",
+        "url": "https://exemplo.com/edital.pdf"
+      }
+    ],
+    "featured": false,
+    "active": true
+  },
+  {
+    "id": "7",
+    "team_name": "Polaris",
+    "sport": "Handebol",
+    "city": "Goiânia",
+    "state": "GO",
+    "age_category": "Livre",
+    "emblem_url": "/img/times/polaris.png",
+    "dates": "18 de Novembro de 2026",
+    "short_location": "Arena Polaris",
+    "address": "Av. das Nações, 1000 - Setor Central, Goiânia - GO",
+    "lat": -16.6869,
+    "lng": -49.2648,
+    "content_text": "Seletiva aberta de handebol, categoria livre. Levar documento e tênis de quadra.",
+    "content_images": [],
+    "registration_links": [
+      {
+        "label": "WhatsApp",
+        "url": "https://wa.me/5562555555555"
+      }
+    ],
+    "featured": false,
+    "active": true
+  },
+  {
+    "id": "8",
+    "team_name": "Ursa FC",
+    "sport": "Futebol",
+    "city": "Porto Alegre",
+    "state": "RS",
+    "age_category": "Sub-13",
+    "emblem_url": "/img/times/ursafc.png",
+    "dates": "05 de Dezembro de 2026",
+    "short_location": "CT Ursa Maior",
+    "address": "Av. do Guaíba, 1000 - Menino Deus, Porto Alegre - RS",
+    "lat": -30.07,
+    "lng": -51.2,
+    "content_text": "Seletiva mirim. Nascidos em 2012 e 2013. Levar RG, foto 3x4 e atestado médico recente.",
+    "content_images": [],
+    "registration_links": [
+      {
+        "label": "Formulário de Inscrição",
+        "url": "https://forms.gle/exemplo5"
+      }
+    ],
+    "featured": false,
+    "active": true
+  }
+]

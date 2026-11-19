@@ -1,0 +1,90 @@
+<!-- PENEIRANDOX — Trecho reutilizável de interface incluído em páginas EJS. -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<%- include('../partials/head', { titulo }) %>
+<body data-page="home">
+<%- include('../partials/header', { paginaAtiva }) %>
+
+<div class="layout-publicidade">
+  <aside class="anuncio-lateral anuncio-lateral-esquerdo"><%- include('../partials/ad-slot', { identificador: 'lateral-esquerdo', formato: 'alto', dica: 'Arte vertical 160 × 600 px' }) %></aside>
+  <div class="coluna-publicidade">
+<main class="principal">
+
+    <!-- HERO (caixa verde escura, arredondada só nas quinas de baixo) -->
+    <section class="hero">
+      <span class="hero-selo">
+        <img class="icone" src="/img/icons/icon-sparkles.png" alt="" /> Seletivas abertas agora
+      </span>
+
+      <h1 class="hero-titulo">
+        Sua carreira <br /><span class="verde">começa aqui</span>
+      </h1>
+
+      <p class="hero-sub">
+        Encontre peneiras e seletivas de dezenas de times em todo o Brasil,
+        inclusive as mais perto de você.
+      </p>
+
+      <!-- Busca do topo → leva para a página Pesquisar -->
+      <form id="form-busca" class="hero-form">
+        <div class="hero-busca">
+          <img class="icone icone-grande" src="/img/icons/icon-search.png" alt="" />
+          <input id="campo-hero" type="text" placeholder="Digite o nome do time..." />
+          <button type="submit">Buscar</button>
+        </div>
+      </form>
+    </section>
+
+    <%- include('../partials/ad-slot', { identificador: 'home-topo', formato: 'largo', dica: 'Anúncio logo abaixo do destaque principal' }) %>
+
+    <div class="conteudo">
+
+      <!-- ============================================================
+           ATALHOS DE ESPORTE (preenchido por paginas.js)
+           No celular: quatro botões, um embaixo do outro.
+           No computador: os quatro ficam lado a lado.
+           Levam para a Pesquisa já com o filtro do esporte.
+      ============================================================ -->
+      <div class="titulo-secao">
+        <h2><img class="icone icone-grande" src="/img/icons/icon-trophy.png" alt="" /> Descubra por esporte</h2>
+      </div>
+      <div id="atalhos-esporte" class="atalhos-esporte"></div>
+
+      
+      <!-- DESTAQUES DA SEMANA (preenchido por paginas.js) -->
+      <section id="sec-destaques" class="secao escondido">
+        <div class="titulo-secao">
+          <h2><img class="icone icone-grande" src="/img/icons/icon-flame.png" alt="" /> Destaques da semana</h2>
+        </div>
+        <div id="lista-destaques"></div>
+      </section>
+
+      <!-- SELETIVAS RECENTES (preenchido por paginas.js) -->
+      <section id="sec-recentes" class="secao escondido">
+        <div class="titulo-secao">
+          <h2><img class="icone icone-grande" src="/img/icons/icon-sparkles.png" alt="" /> Seletivas recentes</h2>
+        </div>
+        <div id="lista-recentes"></div>
+      </section>
+
+      <!-- SEÇÕES POR ESPORTE (Futebol, Futsal...) — preenchido por paginas.js -->
+      <div id="secoes-esporte"></div>
+
+      <%- include('../partials/ad-slot', { identificador: 'home-final', formato: 'largo', dica: 'Espaço de anúncio ao final das seções' }) %>
+
+    </div>
+  </main>
+
+  </div>
+  <aside class="anuncio-lateral anuncio-lateral-direito"><%- include('../partials/ad-slot', { identificador: 'lateral-direito', formato: 'alto', dica: 'Arte vertical 160 × 600 px' }) %></aside>
+</div>
+
+<%- include('../partials/footer') %>
+<%- include('../partials/navbar', { paginaAtiva }) %>
+<%- include('../partials/modal') %>
+<!-- Scripts públicos: carregar na ordem para compartilhar funções e dados. -->
+<script src="/js/dados.js"></script>
+<script src="/js/paginas.js"></script>
+<script src="/js/conta.js"></script>
+</body>
+</html>

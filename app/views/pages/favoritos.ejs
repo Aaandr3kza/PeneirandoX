@@ -1,0 +1,43 @@
+<!-- PENEIRANDOX — Trecho reutilizável de interface incluído em páginas EJS. -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<%- include('../partials/head', { titulo }) %>
+<body data-page="favoritos">
+<%- include('../partials/header', { paginaAtiva }) %>
+
+<div class="layout-publicidade">
+  <aside class="anuncio-lateral anuncio-lateral-esquerdo"><%- include('../partials/ad-slot', { identificador: 'lateral-esquerdo', formato: 'alto', dica: 'Arte vertical 160 × 600 px' }) %></aside>
+  <div class="coluna-publicidade">
+    <%- include('../partials/ad-slot', { identificador: 'topo', formato: 'largo', dica: 'Banner horizontal no topo do site' }) %>
+
+<main class="principal">
+    <div class="conteudo">
+
+      <!-- Título da página -->
+      <div class="pagina-topo">
+        <h1 class="pagina-titulo">Favoritos</h1>
+        <p class="pagina-sub">Seletivas salvas na sua conta.</p>
+      </div>
+
+      <!-- Lista de favoritos (preenchida por paginas.js)
+           Se não houver nenhum favorito, paginas.js mostra a mensagem
+           "Nenhum favorito ainda" com um botão para buscar seletivas. -->
+      <div id="lista-favoritos"></div>
+
+    </div>
+  </main>
+
+    <%- include('../partials/ad-slot', { identificador: 'favoritos-lista-final', formato: 'largo', dica: 'Anúncio ao final da página' }) %>
+  </div>
+  <aside class="anuncio-lateral anuncio-lateral-direito"><%- include('../partials/ad-slot', { identificador: 'lateral-direito', formato: 'alto', dica: 'Arte vertical 160 × 600 px' }) %></aside>
+</div>
+
+<%- include('../partials/footer') %>
+<%- include('../partials/navbar', { paginaAtiva }) %>
+<%- include('../partials/modal') %>
+<!-- Scripts públicos: carregar na ordem para compartilhar funções e dados. -->
+<script src="/js/dados.js"></script>
+<script src="/js/paginas.js"></script>
+<script src="/js/conta.js"></script>
+</body>
+</html>

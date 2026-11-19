@@ -1,0 +1,9 @@
+ANÚNCIOS SIMULADOS
+
+Adicione exatamente estes nove arquivos PNG nesta pasta:
+- anuncio-largo-1.png, anuncio-largo-2.png, anuncio-largo-3.png (banners horizontais; proporção recomendada 970x90)
+- anuncio-alto-1.png, anuncio-alto-2.png, anuncio-alto-3.png (anúncios laterais; proporção recomendada 160x600)
+- anuncio-quadrado-1.png, anuncio-quadrado-2.png, anuncio-quadrado-3.png (anúncios para telas abaixo de 768px; proporção recomendada 1:1)
+
+Os anúncios quadrados são usados abaixo de 768px; acima desse limite, cada espaço usa seu formato padrão.
+A alternância ocorre independentemente por espaço: largos a cada 15 segundos, quadrados a cada 10 segundos e altos a cada 5 segundos.

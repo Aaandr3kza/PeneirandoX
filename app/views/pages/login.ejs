@@ -1,0 +1,88 @@
+<!-- PENEIRANDOX — Trecho reutilizável de interface incluído em páginas EJS. -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<%- include('../partials/head', { titulo }) %>
+<body data-page="login">
+
+
+  <div class="login-wrap">
+
+    <!-- LOGO DO SITE — em cima e centralizado -->
+    <div class="login-logo">
+      <a class="logo logo-escuro" href="/login" aria-label="PeneirandoX — página de entrada">
+        <img class="logo-imagem" src="/img/logo.png" alt="PeneirandoX" />
+      </a>
+    </div>
+
+    <h1 class="login-titulo" id="login-titulo">Entrar</h1>
+    <p class="login-sub" id="login-sub">Acesse para ver as seletivas mais perto de você</p>
+
+    <!-- Abas: Entrar | Criar conta -->
+    <div class="abas">
+      <button id="aba-entrar" class="aba ativo" type="button">Entrar</button>
+      <button id="aba-criar" class="aba" type="button">Criar conta</button>
+    </div>
+
+    <div class="login-card">
+      <!-- Login por e-mail e senha; administradores usam o mesmo formulário. -->
+      <form id="form-entrar" novalidate>
+        <label for="login-email">E-mail</label>
+        <input id="login-email" type="email" placeholder="voce@exemplo.com" />
+
+        <label for="login-senha">Senha</label>
+        <input id="login-senha" type="password" placeholder="••••••••" />
+
+        <p id="erro-entrar" class="erro escondido"></p>
+
+        <button class="btn-principal" type="submit" id="btn-entrar">Entrar</button>
+      </form>
+
+      <!-- ========================= CRIAR CONTA ========================== -->
+      <!-- Coleta: e-mail, senha, gênero, esporte de preferência
+           (opcional e multi escolha), localização (cidade/estado) e idade -->
+      <form id="form-criar" class="escondido" novalidate>
+        <label for="criar-email">E-mail</label>
+        <input id="criar-email" type="email" placeholder="voce@exemplo.com" />
+
+        <label for="criar-senha">Senha</label>
+        <input id="criar-senha" type="password" placeholder="••••••••" />
+
+        <label for="criar-confirma">Confirmar senha</label>
+        <input id="criar-confirma" type="password" placeholder="••••••••" />
+
+        <label for="criar-genero">Gênero</label>
+        <select id="criar-genero"></select>
+
+        <div class="grade-2">
+          <div>
+            <label for="criar-cidade">Cidade</label>
+            <input id="criar-cidade" type="text" placeholder="Ex: São Paulo" />
+          </div>
+          <div>
+            <label for="criar-estado">Estado</label>
+            <select id="criar-estado"></select>
+          </div>
+        </div>
+
+        <label for="criar-idade">Idade</label>
+        <input id="criar-idade" type="number" min="8" max="99" placeholder="Ex: 15" />
+
+        <span class="rotulo">Esporte de preferência (opcional)</span>
+        <div id="criar-chips" class="chips"></div>
+
+        <p id="erro-criar" class="erro escondido"></p>
+
+        <button class="btn-principal" type="submit" id="btn-criar">Criar conta</button>
+      </form>
+    </div>
+
+  </div>
+
+<%- include('../partials/footer') %>
+
+<!-- Scripts públicos: carregar na ordem para compartilhar funções e dados. -->
+<script src="/js/dados.js"></script>
+<script src="/js/paginas.js"></script>
+<script src="/js/conta.js"></script>
+</body>
+</html>

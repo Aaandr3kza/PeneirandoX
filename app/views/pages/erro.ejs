@@ -1,0 +1,9 @@
+<!-- PENEIRANDOX — Trecho reutilizável de interface incluído em páginas EJS. -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<%- include('../partials/head', { titulo: 'Ixe, Página não encontrada — PeneirandoX' }) %>
+<body data-page="erro">
+<main class="principal"><div class="conteudo"><section class="pagina-topo"><h1 class="pagina-titulo"><%= codigo || 404 %></h1><p class="pagina-sub"><%= mensagem || 'A página que você procura não existe.' %></p><a class="btn-principal" href="/">Voltar ao início</a></section></div></main>
+<%- include('../partials/footer') %>
+</body>
+</html>

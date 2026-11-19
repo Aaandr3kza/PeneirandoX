@@ -1,0 +1,482 @@
+/* PENEIRANDOX — estilos globais, cabeçalho, conteúdo, cards e componentes comuns. */
+
+/* ============================================================
+   PENEIRANDOX — FOLHA DE ESTILOS (CSS puro)
+   ============================================================
+   Este arquivo controla TODA a aparência do site standalone
+   (HTML + CSS + JavaScript puros, sem React e sem bibliotecas).
+
+   Ele foi feito para ficar o mais parecido possível com o projeto
+   que aparece na pré-visualização (o app em React).
+
+   ------------------------------------------------------------------
+   PALETA DE CORES (mesma do projeto React)
+   ------------------------------------------------------------------
+   --fundo:        #EEEEEE  → fundo geral (cinza claro)
+   --card:         #FFFFFF  → cards e caixas (branco)
+   --verde:        #39B54A  → verde da marca (botões, ícones, detalhes)
+   --verde-escuro: #012B13  → verde escuro (hero, títulos)
+   --preto:        #111111  → cabeçalho (barra superior)
+
+   ------------------------------------------------------------------
+   ÍNDICE
+   ------------------------------------------------------------------
+   1. Reset e variáveis
+   2. Cabeçalho (logo, menu, botão de ADM invisível)
+   3. Conteúdo principal e HERO
+   4. Títulos de seção
+   5. Cards (uma única coluna, largura total)
+   6. Página Pesquisar (busca + filtros)
+   7. Página Favoritos
+   8. Página Login (ADM)
+   9. Modal de detalhe da seletiva
+   10. Navegação inferior (mobile)
+   11. Utilitários
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. RESET E VARIÁVEIS
+   ------------------------------------------------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Cores */
+  --fundo: #eeeeee;
+  --card: #ffffff;
+  --verde: #39b54a;
+  --verde-escuro: #012b13;
+  --preto: #111111;
+
+  /* Fontes (carregadas do Google Fonts no <head> de cada página)
+     Outfit + Figtree: gratuitas e bem parecidas com a Google Sans
+     (a Google Sans é proprietária, então não pode ser usada) */
+  --fonte-titulo: "Outfit", system-ui, sans-serif;
+  --fonte-texto: "Figtree", system-ui, -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--fonte-texto);
+  background: var(--fundo);
+  color: var(--verde-escuro);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.4;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ------------------------------------------------------------
+   2. CABEÇALHO — logo, menu (desktop) e botão de ADM invisível
+   ------------------------------------------------------------ */
+.cabecalho {
+  position: sticky; /* fica fixo no topo ao rolar a página */
+  top: 0;
+  z-index: 30;
+  background: var(--preto);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cabecalho-interno {
+  max-width: 1152px; /* mesma largura máxima do projeto React (max-w-6xl) */
+  margin: 0 auto;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+/* Espaços à esquerda e à direita: como os dois têm o mesmo tamanho,
+   o LOGO fica sempre centralizado, independente do menu */
+.cabecalho-espaco,
+.cabecalho-direita {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.cabecalho-direita {
+  justify-content: flex-end;
+}
+
+/* Logotipo horizontal em PNG (proporção original 1080 × 112).
+   A largura varia conforme a tela e a imagem mantém sua proporção. */
+.logo {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 100%;
+  text-decoration: none;
+}
+
+.logo-imagem {
+  display: block;
+  width: min(64vw, 235px);
+  max-width: 100%;
+  max-height: 42px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Menu do topo — escondido no mobile, aparece a partir de 768px */
+.menu-desktop {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 16px;
+}
+
+.menu-desktop a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: background 0.15s, color 0.15s;
+}
+
+.menu-desktop a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Página atual fica com fundo verde */
+.menu-desktop a.ativo {
+  background: var(--verde);
+  color: var(--verde-escuro);
+}
+
+/* Ícones do menu: 50% de opacidade no normal e 100% na página atual */
+.menu-desktop .icone {
+  opacity: 0.5;
+}
+
+.menu-desktop a.ativo .icone {
+  opacity: 1;
+}
+
+
+/* ------------------------------------------------------------
+   3. CONTEÚDO PRINCIPAL E HERO
+   ------------------------------------------------------------ */
+/* A <main> não tem margem lateral: assim o HERO encosta no topo e
+   nas laterais da tela. O resto do conteúdo fica em .conteudo. */
+.principal {
+  padding: 0 0 96px; /* espaço extra embaixo por causa da nav inferior */
+}
+
+/* Área com margem lateral (todo o conteúdo, menos o hero) */
+.conteudo {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 24px 16px 0;
+}
+
+/* Caixa verde escura do topo (hero)
+   - sem vão em cima nem nas laterais
+   - arredondada somente nas quinas de baixo */
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 24px 24px;
+  background: var(--verde-escuro);
+  padding: 48px 20px;
+  text-align: center;
+  margin-bottom: 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.hero-selo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(57, 181, 74, 0.2);
+  color: var(--verde);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #fff;
+  margin-top: 16px;
+}
+
+.hero-titulo .verde {
+  color: var(--verde);
+}
+
+.hero-sub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 16px auto 0;
+  max-width: 420px;
+}
+
+/* Barra de busca dentro do hero */
+.hero-form {
+  margin: 28px auto 0;
+  max-width: 560px;
+}
+
+.hero-busca {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 0 0 2px rgba(57, 181, 74, 0.3);
+}
+
+.hero-busca input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--verde-escuro);
+  padding: 8px;
+}
+
+.hero-busca input::placeholder {
+  color: rgba(1, 43, 19, 0.4);
+}
+
+.hero-busca button {
+  border: none;
+  background: var(--verde);
+  color: var(--verde-escuro);
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.hero-busca button:hover {
+  filter: brightness(1.1);
+}
+
+/* ------------------------------------------------------------
+   4. TÍTULOS DE SEÇÃO
+   ------------------------------------------------------------ */
+.secao {
+  margin-bottom: 40px;
+}
+
+.titulo-secao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid rgba(57, 181, 74, 0.3);
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.titulo-secao h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--fonte-titulo);
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  color: var(--verde-escuro);
+}
+
+.ver-todos {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--verde);
+  text-decoration: none;
+}
+
+.ver-todos:hover {
+  text-decoration: underline;
+}
+
+/* ------------------------------------------------------------
+   5. CARDS — UMA ÚNICA COLUNA, LARGURA TOTAL
+   ------------------------------------------------------------
+   .cards é uma coluna (flex-direction: column), então cada card
+   ocupa 100% da largura disponível.
+   ------------------------------------------------------------ */
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--card);
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  border-color: rgba(57, 181, 74, 0.4);
+}
+
+/* Emblema do time (círculo à esquerda) */
+.emblema {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 18px;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* A imagem do emblema cobre o círculo. Se não existir, aparecem
+   as iniciais do time (que ficam atrás da imagem). */
+.emblema img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Informações do time (à direita do emblema) */
+.card-info {
+  flex: 1;
+  min-width: 0; /* permite o texto cortar com "..." */
+  padding-right: 36px; /* espaço para o botão de favorito */
+}
+
+.card-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  color: var(--verde-escuro);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-esporte {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(57, 181, 74, 0.1);
+  color: var(--verde-escuro);
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+.card-detalhes {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: rgba(1, 43, 19, 0.7);
+}
+
+.card-detalhes p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.card-detalhes span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Botão de favorito (canto superior direito do card) */
+.card-fav {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.card-fav:hover {
+  transform: scale(1.1);
+}
+
+.card-fav .icone {
+  width: 20px;
+  height: 20px;
+  opacity: 0.4;
+}
+
+/* Coração preenchido quando o card está favoritado */
+.card-fav.ativo .icone {
+  opacity: 1;
+}
+

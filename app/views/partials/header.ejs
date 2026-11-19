@@ -1,0 +1,39 @@
+<!-- PENEIRANDOX — Trecho reutilizável de interface incluído em páginas EJS. -->
+<header class="cabecalho">
+    <div class="cabecalho-interno">
+      <span class="cabecalho-espaco"></span>
+
+      <!-- Logotipo horizontal da marca. A imagem fica em public/img/logo.png. -->
+      <a class="logo" href="/" aria-label="PeneirandoX — página inicial">
+        <img class="logo-imagem" src="/img/logo.png" alt="PeneirandoX" />
+      </a>
+
+      <!-- ============================================================
+           MENU DO TOPO (computador)
+           Fica escondido no celular e, no computador, aparece na
+           MESMA linha do logo, à direita dele.
+      ============================================================ -->
+      <nav class="menu-desktop">
+        <a href="/" class="<%= paginaAtiva === 'home' ? 'ativo' : '' %>">
+          <img class="icone" src="/img/icons/icon-home.png" alt="" /> Início
+        </a>
+        <a href="/pesquisar" class="<%= paginaAtiva === 'pesquisar' ? 'ativo' : '' %>">
+          <img class="icone" src="/img/icons/icon-search.png" alt="" /> Pesquisar
+        </a>
+        <a href="/favoritos" class="<%= paginaAtiva === 'favoritos' ? 'ativo' : '' %>">
+          <img class="icone" src="/img/icons/icon-heart.png" alt="" /> Favoritos
+        </a>
+        <% if (admin) { %>
+          <a href="/admin" class="<%= paginaAtiva === 'admin' ? 'ativo' : '' %>">
+            <img class="icone" src="/img/icons/icon-admin.png" alt="" /> Administrar
+          </a>
+        <% } else { %>
+          <a href="/perfil" class="<%= paginaAtiva === 'perfil' ? 'ativo' : '' %>">
+            <img class="icone" src="/img/icons/icon-user.png" alt="" /> Perfil
+          </a>
+        <% } %>
+      </nav>
+
+      <div class="cabecalho-direita"></div>
+    </div>
+  </header>

@@ -1,0 +1,105 @@
+<!-- PENEIRANDOX — Trecho reutilizável de interface incluído em páginas EJS. -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<%- include('../partials/head', { titulo }) %>
+<body class="admin-body" data-page="admin" data-super-admin="<%= admin.superAdmin === true ? 'true' : 'false' %>">
+  <header class="admin-topbar">
+    <a class="logo" href="/" aria-label="Voltar ao site">
+      <img class="logo-imagem" src="/img/logo.png" alt="PeneirandoX" />
+    </a>
+    <div class="admin-topbar-direita">
+      <span class="admin-identidade"><strong><%= admin.email %></strong><small><%= admin.superAdmin ? 'Administrador principal' : 'Administrador' %></small></span>
+      <button type="button" class="admin-btn admin-btn-secundario" id="admin-sair">Sair</button>
+    </div>
+  </header>
+
+  <main class="admin-container">
+    <div class="admin-cabecalho-pagina">
+      <div>
+        <span class="admin-kicker">Painel de controle</span>
+        <h1>Gerenciamento do PeneirandoX</h1>
+        <p>Edite as peneiras, os times e as contas cadastradas.</p>
+      </div>
+      <a class="admin-voltar-site" href="/" target="_blank" rel="noopener">Ver site <span aria-hidden="true">↗</span></a>
+    </div>
+
+    <nav class="admin-abas" aria-label="Seções administrativas">
+      <button type="button" class="admin-aba ativa" data-aba="times">Times e seletivas</button>
+      <button type="button" class="admin-aba" data-aba="usuarios">Usuários</button>
+      <button type="button" class="admin-aba" data-aba="anuncios">Anúncios</button>
+    </nav>
+
+    <section class="admin-painel" id="painel-times">
+      <div class="admin-secao-cabecalho">
+        <div><h2>Times e seletivas</h2><p>Os registros desta lista são salvos em <code>app/data/times.json</code>.</p></div>
+        <button type="button" class="admin-btn admin-btn-principal" id="btn-novo-time">+ Novo time / seletiva</button>
+      </div>
+      <p class="admin-feedback" id="feedback-times" role="status" hidden></p>
+      <form id="form-time" class="admin-form-card" hidden novalidate>
+        <div class="admin-form-cabecalho"><h3 id="form-time-titulo">Novo time / seletiva</h3><button type="button" class="admin-fechar" id="cancelar-time" aria-label="Fechar formulário">×</button></div>
+        <input type="hidden" id="time-id" />
+        <div class="admin-form-grid">
+          <label>Nome do time<input id="time-nome" required maxlength="100" /></label>
+          <label>Modalidade<select id="time-esporte" required><option value="">Selecione</option><option>Futebol</option><option>Futsal</option><option>Basquete</option><option>Vôlei</option><option>Handebol</option><option>Tênis</option><option>Natação</option><option>Atletismo</option><option>Outro</option></select></label>
+          <label>Cidade<input id="time-cidade" required maxlength="80" /></label>
+          <label>Estado<select id="time-estado" required><option value="">UF</option><% ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"].forEach(uf => { %><option><%= uf %></option><% }) %></select></label>
+          <label>Categoria<input id="time-categoria" required placeholder="Ex.: Sub-15" maxlength="30" /></label>
+          <label>Datas<input id="time-datas" required placeholder="Ex.: 20 a 25 de novembro de 2026" maxlength="120" /></label>
+          <label>Nome do local<input id="time-local" required maxlength="100" /></label>
+          <label>Escudo (caminho ou URL)<input id="time-escudo" placeholder="/img/times/escudo.png" maxlength="300" /></label>
+          <label class="admin-span-2">Endereço completo<input id="time-endereco" required maxlength="240" /></label>
+          <label>Latitude<input id="time-lat" type="number" step="any" min="-90" max="90" placeholder="Opcional" /></label>
+          <label>Longitude<input id="time-lng" type="number" step="any" min="-180" max="180" placeholder="Opcional" /></label>
+          <label class="admin-span-2">Descrição / orientações<textarea id="time-descricao" rows="4" required maxlength="5000"></textarea></label>
+          <label class="admin-span-2">Imagens do anúncio da seletiva (uma URL por linha)<textarea id="time-imagens" rows="2" placeholder="/img/anuncios/peneira-time.png"></textarea></label>
+          <label class="admin-span-2">Links de inscrição (um por linha: Rótulo | URL)<textarea id="time-links" rows="3" placeholder="Formulário | https://...&#10;WhatsApp | https://..."></textarea></label>
+          <label class="admin-check"><input id="time-destaque" type="checkbox" /> Destacar na página inicial</label>
+          <label class="admin-check"><input id="time-ativo" type="checkbox" checked /> Seletiva ativa e visível no site</label>
+        </div>
+        <div class="admin-form-acoes"><button type="button" class="admin-btn admin-btn-secundario" id="cancelar-time-rodape">Cancelar</button><button type="submit" class="admin-btn admin-btn-principal" id="salvar-time">Salvar registro</button></div>
+      </form>
+      <div class="admin-tabela-wrap"><table class="admin-tabela"><thead><tr><th>Time</th><th>Modalidade</th><th>Local</th><th>Status</th><th>Ações</th></tr></thead><tbody id="lista-times"><tr><td colspan="5">Carregando...</td></tr></tbody></table></div>
+    </section>
+
+    <section class="admin-painel" id="painel-usuarios" hidden>
+      <div class="admin-secao-cabecalho"><div><h2>Usuários</h2><p>Consulte e edite as contas em <code>app/data/usuarios.json</code>. Senhas nunca são exibidas.</p></div></div>
+      <p class="admin-feedback" id="feedback-usuarios" role="status" hidden></p>
+      <form id="form-usuario" class="admin-form-card" hidden novalidate>
+        <div class="admin-form-cabecalho"><h3>Editar usuário</h3><button type="button" class="admin-fechar" id="cancelar-usuario" aria-label="Fechar formulário">×</button></div>
+        <input type="hidden" id="usuario-id" />
+        <div class="admin-form-grid">
+          <label class="admin-span-2">E-mail<input id="usuario-email" type="email" required /></label>
+          <label>Gênero<select id="usuario-genero"><option>Masculino</option><option>Feminino</option><option>Outro</option></select></label>
+          <label>Idade<input id="usuario-idade" type="number" min="8" max="99" required /></label>
+          <label>Cidade<input id="usuario-cidade" required /></label>
+          <label>Estado<select id="usuario-estado" required><% ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"].forEach(uf => { %><option><%= uf %></option><% }) %></select></label>
+          <label class="admin-span-2">Esportes (separados por vírgula)<input id="usuario-esportes" placeholder="Futebol, Futsal" /></label>
+          <label class="admin-check"><input id="usuario-ativo" type="checkbox" checked /> Conta ativa</label>
+        </div>
+        <div class="admin-form-acoes"><button type="button" class="admin-btn admin-btn-secundario" id="cancelar-usuario-rodape">Cancelar</button><button type="submit" class="admin-btn admin-btn-principal">Salvar usuário</button></div>
+      </form>
+      <div class="admin-tabela-wrap"><table class="admin-tabela"><thead><tr><th>E-mail</th><th>Perfil</th><th>Localização</th><th>Status</th><th>Ações</th></tr></thead><tbody id="lista-usuarios"><tr><td colspan="5">Carregando...</td></tr></tbody></table></div>
+
+
+    </section>
+    <section class="admin-painel" id="painel-anuncios" hidden>
+      <div class="admin-secao-cabecalho"><div><h2>Anúncios</h2><p>Cadastre artes nos formatos Largo, Alto ou Quadrado. Os registros ficam em <code>app/data/anuncios.json</code>.</p></div></div>
+      <p class="admin-feedback" id="feedback-anuncios" role="status" hidden></p>
+      <form id="form-anuncio" class="admin-form-card" novalidate>
+        <div class="admin-form-cabecalho"><h3>Novo anúncio</h3></div>
+        <div class="admin-form-grid">
+          <label>Título do anúncio<input id="anuncio-titulo" required maxlength="100" placeholder="Ex.: Patrocinador demonstrativo" /></label>
+          <label>Formato<select id="anuncio-formato" required><option value="largo">Largo (banner horizontal)</option><option value="alto">Alto (lateral vertical)</option><option value="quadrado">Quadrado (50% da largura)</option></select></label>
+          <label class="admin-span-2">Imagem (caminho /img/... ou URL https://...)<input id="anuncio-imagem" required maxlength="500" placeholder="/img/anuncios/minha-arte.png" /></label>
+          <label class="admin-check"><input id="anuncio-ativo" type="checkbox" checked /> Anúncio ativo</label>
+        </div>
+        <div class="admin-form-acoes"><button type="submit" class="admin-btn admin-btn-principal" id="salvar-anuncio">Adicionar anúncio</button></div>
+      </form>
+      <div class="admin-tabela-wrap"><table class="admin-tabela"><thead><tr><th>Prévia</th><th>Título</th><th>Formato</th><th>Status</th><th>Ações</th></tr></thead><tbody id="lista-anuncios"><tr><td colspan="5">Carregando...</td></tr></tbody></table></div>
+    </section>
+    <footer class="admin-rodape">PeneirandoX · Área administrativa</footer>
+  </main>
+  <%- include('../partials/footer') %>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

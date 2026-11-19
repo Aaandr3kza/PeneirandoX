@@ -1,0 +1,122 @@
+PENEIRANDOX — GUIA DE LEITURA DO CÓDIGO
+
+Este arquivo resume a organização do projeto e o funcionamento das partes
+principais. Os arquivos JavaScript, CSS e EJS possuem comentários sobre suas
+responsabilidades e operações relevantes.
+
+1. ARQUIVOS DA RAIZ
+
+app.js
+  Inicializa o Express, carrega o .env, configura arquivos estáticos,
+  formulários, rotas, sessão administrativa disponível aos templates e erros.
+  Também garante a conta administrativa demonstrativa em usuarios.json.
+
+package.json
+  Lista as dependências e define os comandos npm start e npm run dev.
+
+.env
+  Guarda variáveis locais, incluindo JWT_SECRET. Não compartilhe esse arquivo.
+
+.env.example
+  Modelo para criar o .env. A JWT_SECRET deve ter pelo menos 32 caracteres.
+
+2. CONFIG
+
+config/environment.js
+  Centraliza a porta, chave JWT, caminhos dos JSON e duração da sessão admin.
+
+3. APP — BACKEND
+
+app/controllers/
+  - authController.js: cadastro e login pela tela única /login. Ao autenticar
+    uma conta admin/superadmin, cria também o cookie administrativo.
+  - adminController.js: operações administrativas de times, usuários e anúncios.
+  - perfilController.js: consulta e edição do perfil do atleta.
+
+app/data/
+  - usuarios.json: todos os usuários e administradores. O campo role define
+    user, admin ou superadmin.
+  - times.json: times e seletivas divulgados.
+  - anuncios.json: anúncios cadastrados pelo painel.
+
+app/middlewares/
+  - autenticar.js: valida o token de acesso às funções de usuário.
+  - adminAuth.js: valida o cookie administrativo e confirma o role atual no JSON.
+  - validarRequisicao.js: transforma falhas de validação em respostas da API.
+
+app/models/
+  - usuarioModel.js: leitura/gravação de usuarios.json e criação da conta demo.
+  - timeModel.js: leitura/gravação de times.json.
+  - anuncioModel.js: leitura/gravação de anuncios.json.
+
+app/routes/
+  - router.js: páginas EJS do site e proteção da página /admin.
+  - authRoutes.js: endpoints de cadastro e login.
+  - perfilRoutes.js: endpoints do perfil.
+  - timeRoutes.js: consulta pública de seletivas.
+  - adminRoutes.js: endpoints protegidos do painel.
+  - anuncioRoutes.js: consulta pública de anúncios ativos.
+
+app/validators/
+  - authValidator.js: validação dos dados de cadastro e login.
+  - adminValidator.js: validação de times e edição de usuários.
+
+app/views/
+  - pages/: páginas EJS.
+  - partials/: trechos reutilizáveis, incluindo header, navbar, rodapé e espaços
+    publicitários.
+
+4. PUBLIC — FRONTEND
+
+public/css/
+  - base.css: estilos globais e componentes comuns.
+  - paginas.css: estilos específicos, responsividade, painel e rodapé.
+
+public/js/
+  - dados.js: dados e funções compartilhadas do frontend.
+  - paginas.js: navegação e renderização das páginas públicas.
+  - conta.js: cadastro, login, perfil e autenticação no navegador.
+  - anuncios.js: busca e alternância das artes publicitárias.
+  - admin.js: abas, formulários e tabelas do painel administrativo.
+
+public/img/
+  Contém logotipos, ícones, modalidades, escudos e imagens demonstrativas.
+  Para usar uma nova imagem de anúncio, coloque-a em public/img/anuncios e
+  informe no painel seu caminho, por exemplo /img/anuncios/minha-arte.png.
+
+5. CONTAS E PERMISSÕES
+
+A autenticação é feita pela tela /login para todos os tipos de conta.
+O cadastro público sempre grava role=user, independentemente de qualquer
+campo enviado pelo navegador.
+
+Na primeira inicialização, o sistema garante uma única conta administrativa
+demonstrativa:
+  E-mail: adm@gmail.com
+  Senha: 123ADM
+  role: superadmin
+
+A conta fica em app/data/usuarios.json. O painel /admin e os endpoints
+/api/admin exigem cookie administrativo válido e role admin ou superadmin.
+O formulário público não permite criar administradores. Para a demonstração,
+a conta inicial é a única conta administrativa.
+
+6. ANÚNCIOS
+
+Os anúncios adicionados no painel são gravados em app/data/anuncios.json.
+Cada registro possui título, formato (largo, alto ou quadrado), caminho/URL da
+imagem e status ativo.
+
+As páginas públicas têm dois espaços horizontais: um no topo (logo abaixo do
+hero na página inicial) e outro no final. Em telas móveis esses mesmos espaços
+usam anúncios quadrados, com 50% da largura disponível e altura natural da
+imagem. Em telas largas há dois espaços altos laterais, um de cada lado.
+
+7. RODAPÉ
+
+O rodapé reutilizável fica em app/views/partials/footer.ejs e é incluído nas
+páginas públicas, no login, no painel administrativo e na página de erro.
+Os contatos exibidos são fictícios para a apresentação do projeto.
+
+O botão oculto de administrador, a tela separada de login administrativo,
+o arquivo administradores.json e o modelo adminModel.js foram removidos.
