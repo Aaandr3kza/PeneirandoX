@@ -173,7 +173,7 @@ function initLogin() {
     mostrarErro("erro-criar", "");
 
     if (!email || !senha || !confirma || !genero || !cidade || !estado || !document.getElementById("criar-idade").value) {
-      mostrarErro("erro-criar", "Preencha todos os campos obrigatórios."); return;
+      mostrarErro("erro-criar", "Preencha todos os campos"); return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { mostrarErro("erro-criar", "Informe um e-mail válido."); return; }
     if (senha.length < 8) { mostrarErro("erro-criar", "A senha deve ter pelo menos 8 caracteres."); return; }

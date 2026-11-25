@@ -1,0 +1,5 @@
+git add . : seleciona as alterações.
+
+git commit : registra uma versão das alterações.
+
+git push origin main : envia essa versão ao GitHub.j
